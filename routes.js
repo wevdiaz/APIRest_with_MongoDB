@@ -5,5 +5,7 @@ const personController = require("./controllers/PersonController");
 route.get("/", personController.home );
 route.post("/person", personController.create );
 route.get("/person", personController.findAllPerson );
+route.get("/person/:id", personController.findPerson );
+
 
 module.exports = route;
