@@ -47,3 +47,23 @@ exports.findPerson = async (req, res) => {
     return res.status(500).json({ error: err });
   }
 }
+
+exports.updatePerson = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, salary, approved } = req.body;
+
+    const person = { name, salary, approved };
+    const personUpdated = await Person.updateOne({_id: id }, person);
+
+    if (personUpdated.matchedCount === 0) {
+      return res.status(422).json({ message: "O cadastro não foi encontrado!"});
+    }
+
+    return res.status(200).json(person);
+
+
+  }catch(err) {
+    return res.status(500).json({ error: err });
+  }
+}
