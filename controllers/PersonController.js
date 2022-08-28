@@ -67,3 +67,21 @@ exports.updatePerson = async (req, res) => {
     return res.status(500).json({ error: err });
   }
 }
+
+exports.deletePerson = async (req, res) => {
+    const { id } = req.params;
+    const person = await Person.findOne({_id: id });    
+
+    if (!person) {
+      return res.status(422).json({ message: "Cadastro não encontrado!" });
+    }
+
+  try {    
+
+    await Person.deleteOne({_id: id });
+    return res.status(200).json({ message: "Cadastro removido com sucesso!" });
+
+  } catch(err) {
+    return res.status(500).json({ error: err });
+  }
+}

@@ -7,6 +7,7 @@ route.post("/person", personController.create );
 route.get("/person", personController.findAllPerson );
 route.get("/person/:id", personController.findPerson );
 route.patch("/person/:id", personController.updatePerson );
+route.delete("/person/:id", personController.deletePerson );
 
 
 module.exports = route;
